@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+/*
+ * style.css
+ */
+body {
+  padding-top: 50px;
+  margin: 12px auto;
+  width: 1280px;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+th {
+  font-size: 18px;
+}
