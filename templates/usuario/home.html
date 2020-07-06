@@ -14,9 +14,9 @@
                     </div>
                 </div>
             </div>
-            {% include 'partials/_alertas.html' %}
             <div class="row">
                 <div class="col-12">
+                    {% include 'partials/_alertas.html' %}
                     <div class="contact-form-area">
                         <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-12 text-center">
                                     <button class="btn btn-success" type="submit">Acessar sua conta</button>
-                                    <button type="button" class="btn btn-primary">Ainda não tem conta? Clique aqui</button>
+                                    <a type="button" class="btn btn-primary" href="{% url 'cadastro' %}">Ainda não tem conta? Clique aqui</a>
                                 </div>
                             </div>
                         </form>

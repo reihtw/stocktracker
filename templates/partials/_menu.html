@@ -3,13 +3,14 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container h-100">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="{% url 'home' %}">Stock Tracker</a>
+			<a class="navbar-brand" href="{% url 'home' %}">Stock Tracker Coffee</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
 					<li><a href="#">Papeis</a></li>
 					<li><a href="#">Minhas negociações</a></li>
+					<li><a href="#">Minhas corretoras</a></li>
 				{% endif %}
 			</ul>
 		</div>
