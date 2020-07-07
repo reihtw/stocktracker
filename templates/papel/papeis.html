@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+<div id="main" class="container">
+    <form action="{% url 'procurar_papeis' %}" method="post">
+        <div id="top" class="row">
+            <div class="col-md-2">
+                <h2>Papéis</h2>
+            </div>
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="input-group h2">
+                    <input type="hidden" name="command" value="ListarPaises">
+                    <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar papeis (deixe vazio para trazer todos)">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" name="acao" value="buscar">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="col-md-2">
+                <a href="{% url 'cadastro_papel'%}" class="btn btn-primary pull-right h2">Cadastrar Novo Papel</a>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'atualizar_precos'%}" class="btn btn-primary pull-right h2">Atualizar preços</a>
+            </div>
+        </div>
+        <!-- /#top -->
+    </form>
+    <hr/>
+    <c:if test="${not empty lista}">
+        <div id="list" class="row">
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Último Preço</th>
+                            <th>Data de atualização</th>
+                            <th>Tipo</th>
+                            <th class="actions">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for papel in papeis %}
+                            <tr>
+                                <td>
+                                    {{ papel.codigo_acao }}
+                                </td>
+                                <td>
+                                    R$ {{ papel.preco_atual|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    {{ papel.data_atualizacao }}
+                                </td>
+                                <td>
+                                    {{ papel.tipo }}
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-xs" href="#">Visualizar Histórico</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}

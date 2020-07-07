@@ -5,6 +5,8 @@ from django.contrib import auth, messages
 # Create your views here.
 
 def home(request):
+    if request.user.is_authenticated:
+        return redirect('papeis')
     return render(request, 'usuario/home.html')
 
 def login(request):
@@ -20,8 +22,7 @@ def login(request):
             user = auth.authenticate(request, username=nome, password=senha)
             if user is not None:
                 auth.login(request, user)
-                print('Login realizado com sucesso')
-                return redirect('home')
+                return redirect('papeis')
             else:
                 messages.error(request, 'Senha inválida!')
                 return redirect('home')

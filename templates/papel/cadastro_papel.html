@@ -22,12 +22,16 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-12 col-lg-12">
-                                <label for="email"><b>Código</b></label>
+                                <label for="codigo"><b>Código</b></label>
                                     <input type="text" id="codigo" class="form-control" name="codigo" placeholder="Ex.:PETR4" required>
                                 </div>
-                                    <div class="col-12 col-lg-12">
-                                    <label for="senha"><b>Tipo</b></label>
-                                    <input id="tipo" type="text" class="form-control" name="tipo" placeholder="Ação, FII, ETF" required>
+                                <div class="col-12 col-lg-12">
+                                    <label for="tipo"><b>Tipo</b></label>
+                                    <select class="form-control" id="tipo" name="tipo">
+                                        {% for tipo in tipos %}
+                                            <option class="form-control" value="{{ tipo }}">{{ tipo }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                                 <div class="col-12 text-center">
                                     <button class="btn btn-success" type="submit">Cadastrar Papel</button>
