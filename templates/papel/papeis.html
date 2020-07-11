@@ -63,7 +63,7 @@
                                     {{ papel.tipo }}
                                 </td>
                                 <td>
-                                    <a class="btn btn-info btn-xs" href="#">Visualizar Histórico</a>
+                                    <a class="btn btn-info btn-xs" href="{% url 'visualizar_historico' papel.codigo_acao %}">Visualizar Histórico</a>
                                 </td>
                             </tr>
                         {% endfor %}

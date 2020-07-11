@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+<div id="main" class="container">
+    <form action="{% url 'procurar_papeis' %}" method="post">
+        <div id="top" class="row">
+            <div class="col-md-4">
+                <h2>{{ papel.codigo_acao }}</h2>
+            </div>
+            <div class="col-md-4">
+                <h3>Preço atual: R$ {{ papel.preco_atual|floatformat:2|intcomma }}</h3>
+            </div>
+            <div class="col-md-4">
+                
+                {% if historico %}
+                    <a href="#" class="btn btn-primary pull-right h2">Atualizar Histórico</a>
+                    <a href="{% url 'carregar_historico' papel.codigo_acao %}" class="btn btn-info pull-right h2">Carregar Histórico</a>
+                {% else %}
+                    <a href="{% url 'carregar_historico' papel.codigo_acao %}" class="btn btn-info pull-right h2">Carregar Histórico</a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- /#top -->
+    </form>
+    <hr/>
+    <div id="list" class="row">
+        {% if historico %}
+        <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Abertura</th>
+                        <th>Fechamento</th>
+                        <th>Máximo</th>
+                        <th>Minímo</th>
+                        <th>Média</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in historico %}
+                        <tr>
+                            <td>
+                                {{ data.dia }}
+                            </td>
+                            <td>
+                                R$ {{ data.abertura|floatformat:2|intcomma }}
+                            </td>
+                            <td>
+                                R$ {{ data.fechamento|floatformat:2|intcomma }}
+                            </td>
+                            <td>
+                                R$ {{ data.maximo|floatformat:2|intcomma }}
+                            </td>
+                            <td>
+                                R$ {{ data.minimo|floatformat:2|intcomma }}
+                            </td>
+                            <td>
+                                R$ {{ data.media|floatformat:2|intcomma }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="container">
+                <h4 class="text-center" style="color:darkgrey">Histórico não carregado. Clique em "Carregar Historico".</h4>
+            </div>
+        {% endif %}
+        </div>
+{% endblock %}

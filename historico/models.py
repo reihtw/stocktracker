@@ -11,7 +11,7 @@ class Historico(models.Model):
     fechamento = models.FloatField()
     maximo = models.FloatField()
     minimo = models.FloatField()
-    volume = models.FloatField()
+    media = models.FloatField()
 
     def __str__(self):
-        return f'{self.codigo_acao}, {self.dia}, {self.abertura}, {self.fechamento}, {self.maximo}, {self.minimo}, {self.volume}'
+        return f'{self.codigo_acao}, {self.dia}, {self.abertura}, {self.fechamento}, {self.maximo}, {self.minimo}, {self.media}'
