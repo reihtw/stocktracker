@@ -7,6 +7,7 @@ class Papel(models.Model):
     data_atualizacao = models.DateTimeField()
     preco_atual = models.FloatField()
     tipo = models.CharField(max_length=5)
+    historico_completo = models.BooleanField(default=False)
 
     def __str__(self):
         return self.codigo_acao

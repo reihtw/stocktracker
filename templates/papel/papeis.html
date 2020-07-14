@@ -12,7 +12,7 @@
                 <h2>Papéis</h2>
             </div>
             {% csrf_token %}
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="input-group h2">
                     <input type="hidden" name="command" value="ListarPaises">
                     <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar papeis (deixe vazio para trazer todos)">
@@ -29,6 +29,9 @@
             </div>
             <div class="col-md-2">
                 <a href="{% url 'atualizar_precos'%}" class="btn btn-primary pull-right h2">Atualizar preços</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary pull-right h2" href="{% url 'atualizar_tudo' %}">Atualizar Histórico</a>
             </div>
         </div>
         <!-- /#top -->

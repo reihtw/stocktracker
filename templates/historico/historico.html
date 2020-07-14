@@ -17,8 +17,7 @@
             <div class="col-md-4">
                 
                 {% if historico %}
-                    <a href="#" class="btn btn-primary pull-right h2">Atualizar Histórico</a>
-                    <a href="{% url 'carregar_historico' papel.codigo_acao %}" class="btn btn-info pull-right h2">Carregar Histórico</a>
+                    <a href="{% url 'atualizar_historico' papel.codigo_acao%}" class="btn btn-primary pull-right h2">Atualizar Histórico</a>
                 {% else %}
                     <a href="{% url 'carregar_historico' papel.codigo_acao %}" class="btn btn-info pull-right h2">Carregar Histórico</a>
                 {% endif %}
