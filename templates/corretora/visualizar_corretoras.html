@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+<div id="main" class="container">
+    <form action="{% url 'procurar_papeis' %}" method="post">
+        <div id="top" class="row">
+            <div class="col-md-3">
+                <h2>Corretoras</h2>
+            </div>
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="input-group h2">
+                    <input type="hidden" name="command" value="ListarPaises">
+                    <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar corretoras (deixe vazio para trazer todas)">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" name="acao" value="buscar">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <a href="{% url 'cadastrar_corretora' %}" class="btn btn-primary pull-right h2">Cadastrar Corretora</a>
+            </div>
+        </div>
+        <!-- /#top -->
+    </form>
+    <hr/>
+    <div id="list" class="row">
+        {% if corretoras %}
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Taxa para Ações</th>
+                            <th>Taxa para Ações (Mercado Fracionário)</th>
+                            <th>Taxa para FIIs</th>
+                            <th>Taxa para ETFs</th>
+                            <th class="actions">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for corretora in corretoras %}
+                            <tr>
+                                <td>
+                                    {{ corretora.nome }}
+                                </td>
+                                <td>
+                                    R$ {{ corretora.taxa_acoes|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    R$ {{ corretora.taxa_acoes_fracionario|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    R$ {{ corretora.taxa_fiis|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    R$ {{ corretora.taxa_etfs|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-xs" href="#">Editar valores</a>
+                                    <a class="btn btn-danger btn-xs" href="#">Excluir corretora</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="container">
+                <h4 class="text-center" style="color:darkgrey">Nenhuma corretora cadastrada.</h4>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

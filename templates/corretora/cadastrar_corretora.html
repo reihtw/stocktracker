@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+<div class="contact-area section-padding-0-80">
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h2>Cadastrar Corretora</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {% include 'partials/_alertas.html' %}
+                    <div class="contact-form-area">
+                        <form action="{% url 'cadastrar_corretora' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-lg-12">
+                                    <label for="codigo"><b>Código</b></label>
+                                    <input type="text" id="nome" class="form-control" name="nome" placeholder="Ex.:MyCap" required>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <label for="codigo"><b>Taxa para Ações</b></label>
+                                    <input type="text" id="taxa_acoes" class="form-control" name="taxa_acoes" placeholder="Ex.:4.99" required>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <label for="codigo"><b>Taxa para Ações (Mercado Frácionario)</b></label>
+                                    <input type="text" id="taxa_acoes_fracionario" class="form-control" name="taxa_acoes_fracionario" placeholder="Ex.:2.49" required>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <label for="codigo"><b>Taxa para FIIs</b></label>
+                                    <input type="text" id="taxa_fiis" class="form-control" name="taxa_fiis" placeholder="Ex.:0.00" required>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <label for="codigo"><b>Taxa para ETFs</b></label>
+                                    <input type="text" id="taxa_etfs" class="form-control" name="taxa_etfs" placeholder="Ex.:0.00" required>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" type="submit">Cadastrar Corretora</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
