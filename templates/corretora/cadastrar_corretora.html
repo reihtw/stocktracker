@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 
 {% include 'partials/_menu.html' %}
@@ -10,7 +11,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading">
-                        <h2>Cadastrar Corretora</h2>
+                        <h2>{{ titulo }} Corretora</h2>
                     </div>
                 </div>
             </div>
@@ -18,31 +19,32 @@
                 <div class="col-12">
                     {% include 'partials/_alertas.html' %}
                     <div class="contact-form-area">
-                        <form action="{% url 'cadastrar_corretora' %}" method="POST">
+                        <form action="{% url metodo %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
+                                <input type="hidden" id="corretora_id" name="corretora_id" value="{{corretora.id}}">
                                 <div class="col-12 col-lg-12">
                                     <label for="codigo"><b>Código</b></label>
-                                    <input type="text" id="nome" class="form-control" name="nome" placeholder="Ex.:MyCap" required>
+                                    <input type="text" id="nome" class="form-control" name="nome" placeholder="Ex.:MyCap" required value="{{corretora.nome}}">
                                 </div>
                                 <div class="col-12 col-lg-12">
                                     <label for="codigo"><b>Taxa para Ações</b></label>
-                                    <input type="text" id="taxa_acoes" class="form-control" name="taxa_acoes" placeholder="Ex.:4.99" required>
+                                    <input type="text" id="taxa_acoes" class="form-control" name="taxa_acoes" placeholder="Ex.:4.99" required value="{{ corretora.taxa_acoes|floatformat:2 }}">
                                 </div>
                                 <div class="col-12 col-lg-12">
                                     <label for="codigo"><b>Taxa para Ações (Mercado Frácionario)</b></label>
-                                    <input type="text" id="taxa_acoes_fracionario" class="form-control" name="taxa_acoes_fracionario" placeholder="Ex.:2.49" required>
+                                    <input type="text" id="taxa_acoes_fracionario" class="form-control" name="taxa_acoes_fracionario" placeholder="Ex.:2.49" required value="{{corretora.taxa_acoes_fracionario}}">
                                 </div>
                                 <div class="col-12 col-lg-12">
                                     <label for="codigo"><b>Taxa para FIIs</b></label>
-                                    <input type="text" id="taxa_fiis" class="form-control" name="taxa_fiis" placeholder="Ex.:0.00" required>
+                                    <input type="text" id="taxa_fiis" class="form-control" name="taxa_fiis" placeholder="Ex.:0.00" required value="{{corretora.taxa_fiis}}">
                                 </div>
                                 <div class="col-12 col-lg-12">
                                     <label for="codigo"><b>Taxa para ETFs</b></label>
-                                    <input type="text" id="taxa_etfs" class="form-control" name="taxa_etfs" placeholder="Ex.:0.00" required>
+                                    <input type="text" id="taxa_etfs" class="form-control" name="taxa_etfs" placeholder="Ex.:0.00" required value="{{corretora.taxa_etfs}}">
                                 </div>
                                 <div class="col-12 text-center">
-                                    <button class="btn btn-success" type="submit">Cadastrar Corretora</button>
+                                    <button class="btn btn-success" type="submit">{{titulo}} Corretora</button>
                                 </div>
                             </div>
                         </form>

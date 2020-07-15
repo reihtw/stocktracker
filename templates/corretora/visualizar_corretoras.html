@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load l10n %}
 {% load humanize %}
 {% block content %}
 
@@ -64,8 +65,8 @@
                                     R$ {{ corretora.taxa_etfs|floatformat:2|intcomma }}
                                 </td>
                                 <td>
-                                    <a class="btn btn-info btn-xs" href="#">Editar valores</a>
-                                    <a class="btn btn-danger btn-xs" href="#">Excluir corretora</a>
+                                    <a class="btn btn-info btn-xs" href="{% url 'editar_corretora' corretora.nome %}">Editar valores</a>
+                                    <a class="btn btn-danger btn-xs" href="{% url 'excluir_corretora' corretora.id %}">Excluir corretora</a>
                                 </td>
                             </tr>
                         {% endfor %}

@@ -118,6 +118,8 @@ LANGUAGE_CODE = 'pt-bt'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
+THOUSAND_SEPARATOR = True
+
 USE_I18N = True
 
 USE_L10N = True
