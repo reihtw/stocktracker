@@ -4,7 +4,7 @@
 Invesment management system.
 
 ## How it works?
-In it you can register your brokers, papers and your trades. With real-time updating of the stock price, registration of the entire stock history, automatic calculation of trading fees and automatic calculation of profit / loss.
+In it you can register your brokers, stocks and your trades. With real-time updating of the stock price, registration of the entire stock history, automatic calculation of trading fees and automatic calculation of profit / loss.
 
 ## Soon
 - Graphs of stock's history
