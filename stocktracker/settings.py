@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'compra',
     'corretora',
     'historico',
+    'negociacoes',
     'papel',
     'usuario',
     'venda',

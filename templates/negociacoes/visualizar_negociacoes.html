@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load l10n %}
+{% load humanize %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+<div id="main" class="container">
+    <form action="{% url 'procurar_papeis' %}" method="post">
+        <div id="top" class="row">
+            <div class="col-md-3">
+                <h2>Negociações</h2>
+            </div>
+            {% csrf_token %}
+            <div class="col-md-3">
+                <div class="input-group h2">
+                    <input type="hidden" name="command" value="ListarPaises">
+                    <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar papeis negociados">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" name="acao" value="buscar">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'atualizar_resultados' %}" class="btn btn-primary pull-right h2">Atualizar Resultados</a>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'registrar_compra' %}" class="btn btn-success pull-right h2">Registrar Compra</a>
+            </div>
+        </div>
+        <!-- /#top -->
+    </form>
+    <hr/>
+    <div id="list" class="row">
+        {% if negociacoes %}
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Código do Papel</th>
+                            <th>Quantidade</th>
+                            <th>Preço Médio</th>
+                            <th>Preço Médio Total</th>
+                            <th>Última Data de Compra</th>
+                            <th>Resultado (%):</th>
+                            <th>Resultado (R$):</th>
+                            <th class="actions">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for negociacao in negociacoes %}
+                            <tr>
+                                <td>
+                                    {{ negociacao.papel.codigo_acao }}
+                                </td>
+                                <td>
+                                    {{ negociacao.quantidade }}
+                                </td>
+                                <td>
+                                    R$ {{ negociacao.preco_medio_unitario|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    R$ {{ negociacao.preco_medio_total|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    {{ negociacao.ultima_data_compra }}
+                                </td>
+                                <td>
+                                    {{ negociacao.resultado_porcentagem|floatformat:2 }}%
+                                </td>
+                                <td>
+                                    R$ {{ negociacao.resultado|floatformat:2|intcomma }}
+                                </td>
+                                <td>
+                                    <a class="btn btn-success btn-xs" href="{% url 'registrar_compra_papel' negociacao.papel.codigo_acao %}">Registrar Compra</a>
+                                    <a class="btn btn-info btn-xs" href="{% url 'negociacoes_papel' negociacao.papel.codigo_acao %}">Mais detalhes</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="container">
+                <h4 class="text-center" style="color:darkgrey">Nenhuma negociação registrada ainda.</h4>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

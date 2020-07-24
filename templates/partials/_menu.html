@@ -9,7 +9,7 @@
 			<ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
 					<li><a href="{% url 'papeis' %}">Papeis</a></li>
-					<li><a href="#">Minhas negociações</a></li>
+					<li><a href="{% url 'visualizar_negociacoes' %}">Minhas negociações</a></li>
 					<li><a href="{% url 'visualizar_corretoras' %}">Minhas corretoras</a></li>
 				{% endif %}
 			</ul>

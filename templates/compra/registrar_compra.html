@@ -1,0 +1,76 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding-0-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>Registrar Compra</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {% include 'partials/_alertas.html' %}
+                <div class="contact-form-area">
+                    <form action="{% url 'registrar_compra' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                {% if papeis %}
+                                    <label for="codigo_acao"><b>Papel:</b></label>
+                                    <select id="codigo_acao" name="codigo_acao">
+                                        {% for papel in papeis %}
+                                            {% if codigo_acao == papel.codigo_acao %}
+                                                <option value="{{ papel.codigo_acao }}" selected>{{ papel.codigo_acao }}</option>
+                                            {% else %}
+                                                <option value="{{ papel.codigo_acao }}">{{ papel.codigo_acao }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                {% else %}
+                                    <h4 class="text-center" style="color:darkgrey">Nenhum papel registrado ainda, registre-o antes de cadastrar a compra.</h4>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                {% if corretoras %}
+                                    <label for="nome_corretora"><b>Corretora:</b></label>
+                                    <select id="nome_corretora" name="nome_corretora">
+                                        {% for corretora in corretoras %}
+                                            <option value="{{ corretora.nome }}">{{ corretora.nome }}</option>
+                                        {% endfor %}
+                                    </select>
+                                {% else %}
+                                    <h4 class="text-center" style="color:darkgrey">Nenhum papel registrado ainda, registre-o antes de cadastrar a compra.</h4>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="preco_unitario"><b>Preço Unitário:</b></label>
+                                <input type="text" class="form-control" name="preco_unitario" placeholder="Ex.: 30.92" required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="quantidade"><b>Quantidade</b></label>
+                                <input type="text" class="form-control" name="quantidade" placeholder="Ex.: 100" required>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="data_compra"><b>Data Compra:</b></label>
+                                <input type="date" class="form-control" name="data_compra" value="{{ data }}" max="{{ data }}" placeholder="dd-mm-yyyy" required>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn btn-success" type="submit">Criar sua conta</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
