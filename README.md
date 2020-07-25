@@ -14,7 +14,7 @@ In it you can register your brokers, stocks and your trades. With real-time upda
 - STOP suggestion
 
 ## O que é?
-Sistema de gerênciamento de investimentos.
+Sistema de gerenciamento de investimentos.
 
 ## Como funciona?
 Nele você consegue registrar suas corretoras, papéis e suas negociações. Tendo atualização em tempo real do valor das ações, registro de todo o histórico dos papéis, cálculo automático das taxas de negociação e cálculo automático de lucro/prejuízo.
